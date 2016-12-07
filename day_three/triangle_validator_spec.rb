@@ -1,4 +1,5 @@
 require_relative 'triangle_validator'
+require_relative 'vertical_dimension_reader'
 
 describe TriangleValidator do
 
@@ -27,5 +28,16 @@ describe TriangleValidator do
       valid_triangles +=1 if triangle.is_valid?
     end
     expect(valid_triangles).to eq(982)
+  end
+
+  it('helps solve the second puzzle') do
+    valid_triangles = 0
+
+    dimensions = VerticalDimensionReader.read_dimensions_from('sample.txt')
+
+    dimensions.each_slice(3) {|side_a, side_b, side_c|
+      valid_triangles += 1 if TriangleValidator.new(side_a,side_b,side_c).is_valid?
+    }
+    expect(valid_triangles).to eq(1826)
   end
 end
