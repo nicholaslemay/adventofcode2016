@@ -2,9 +2,7 @@ class Room
 
   def initialize(encrypted)
     @encrypted_name =  split(encrypted)[0]
-
     @number_of_shifts =  split(encrypted)[1].to_i
-
     @alphabet = ('a'..'z').to_a
   end
 
